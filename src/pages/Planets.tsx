@@ -1,4 +1,4 @@
-import { FC, use } from "react";
+import { FC, use, useState } from "react";
 import { Planet } from "../interfaces/planet.interface";
 import { EditPlanetForm } from "./ui/EditPlanetForm";
 import { getPlanets } from "../actions/get-planets.action";
@@ -10,11 +10,13 @@ interface Props {
 }
 
 const Planets: FC<Props> = ({ getPlanets }) => {
-  const planets = use(getPlanets);
+  const originalPlanets = use(getPlanets);
+  const [planets, setPlanets] = useState<Planet[]>(originalPlanets);
 
-  const handleAddPlanet = async (planet: Partial<Planet>) => {
-    const newPlanet = await createPlanetAction(planet);
-    console.log("Exito", newPlanet);
+  const handleAddPlanet = async (planet: Planet) => {
+    // const newPlanet = await createPlanetAction(planet);
+    // console.log("Exito", newPlanet);
+    setPlanets([...planets, planet]);
   };
 
   return (
