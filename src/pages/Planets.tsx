@@ -1,35 +1,20 @@
-import { FC, use} from 'react';
-import { Planet } from '../interfaces/planet.interface';
-import { EditPlanetForm } from './ui/EditPlanetForm';
-import { getPlanets } from '../actions/get-planets.action';
-import { PlanetList } from './ui/PlanetList';
+import { FC, use } from "react";
+import { Planet } from "../interfaces/planet.interface";
+import { EditPlanetForm } from "./ui/EditPlanetForm";
+import { getPlanets } from "../actions/get-planets.action";
+import { PlanetList } from "./ui/PlanetList";
+import { createPlanetAction } from "../actions/create-planet.action";
 
 interface Props {
-  getPlanets: Promise<Planet[]>
+  getPlanets: Promise<Planet[]>;
 }
 
-const Planets: FC<Props> = ({getPlanets}) => {
+const Planets: FC<Props> = ({ getPlanets }) => {
+  const planets = use(getPlanets);
 
-  const planets = use(getPlanets)
-  
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState<string | null>(null);
-  // const [planets, setPlanets] = useState<Planet[]>([]);
-
-  // useEffect(() => {
-  //   getPlanets()
-  //     .then((res) => {
-  //       setPlanets(res);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       setError(error.message);
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
-  const handleAddPlanet = (planet: Partial<Planet>) => {
-    console.log(planet);
+  const handleAddPlanet = async (planet: Partial<Planet>) => {
+    const newPlanet = await createPlanetAction(planet);
+    console.log("Exito", newPlanet);
   };
 
   return (
