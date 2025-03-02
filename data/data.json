@@ -38,13 +38,13 @@
     },
     {
       "id": "f6a6",
-      "name": "Urano",
+      "name": "URANO",
       "type": "Planeta",
       "distanceFromSun": "150"
     },
     {
       "id": "f19d",
-      "name": "Neptuno",
+      "name": "NEPTUNO",
       "type": "Planeta",
       "distanceFromSun": "990"
     }
